@@ -1,0 +1,10 @@
+{
+  "name": "roadmap-for-vibe-coding",
+  "version": "0.1.0",
+  "description": "A subway-map roadmap for vibe coding: see where your plan bent while an AI writes the code. One JSON file, one HTML page.",
+  "author": { "name": "octooking-byte" },
+  "homepage": "https://github.com/octooking-byte/roadmap-for-vibe-coding",
+  "repository": "https://github.com/octooking-byte/roadmap-for-vibe-coding",
+  "license": "MIT",
+  "keywords": ["roadmap", "vibe-coding", "claude-code", "kanban", "progress", "subway-map"]
+}

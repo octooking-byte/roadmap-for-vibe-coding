@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db
+*.log
+# 예시가 아닌 곳에서 만든 화면과 그림은 올리지 않는다
+*.png
+!예시/화면_*.png
+!예시/움직임_*.gif
+*.html
+!엔진/궤적틀.html
+!예시/궤적예시.html
+!예시/example-en.html

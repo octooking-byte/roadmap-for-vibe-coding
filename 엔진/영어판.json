@@ -1,0 +1,481 @@
+{
+  "설명": "데이터에 \"언어\": \"en\"이면 생성기가 궤적틀.html의 화면 글을 이 표대로 바꾼다. 왼쪽은 틀에 그대로 있는 글자열이다. 틀에서 글을 고치면 여기도 고친다. 생성기가 왼쪽 글자열이 틀에 없으면 멈춘다.",
+  "바꿈": [
+    [
+      "<html lang=\"ko\">",
+      "<html lang=\"en\">"
+    ],
+    [
+      "const LANG = \"ko\";",
+      "const LANG = \"en\";"
+    ],
+    [
+      "const LABEL = {goal:\"목표\", done:\"완료\", now:\"지금\", todo:\"대기\", next:\"다음\", parked:\"보류\"};",
+      "const LABEL = {goal:\"Goal\", done:\"Done\", now:\"Now\", todo:\"To do\", next:\"Next\", parked:\"On hold\"};"
+    ],
+    [
+      "const BL = {0:\"메인\", 1:\"보조\", \"-1\":\"추가\"};",
+      "const BL = {0:\"Main\", 1:\"Side\", \"-1\":\"Extra\"};"
+    ],
+    [
+      "const LANE_NAME = {\"-1\":\"추가 노선\", \"0\":\"메인 노선\", \"1\":\"보조 노선\"};",
+      "const LANE_NAME = {\"-1\":\"Extra line\", \"0\":\"Main line\", \"1\":\"Side line\"};"
+    ],
+    [
+      "<b>메인</b>",
+      "<b>Main</b>"
+    ],
+    [
+      "<b>보조</b>",
+      "<b>Side</b>"
+    ],
+    [
+      "<b>추가</b>",
+      "<b>Extra</b>"
+    ],
+    [
+      "<em>지금</em>",
+      "<em>Now</em>"
+    ],
+    [
+      "마감 ${-left}일 지남",
+      "${-left} days overdue"
+    ],
+    [
+      "마감까지 <b>",
+      "Due <b>"
+    ],
+    [
+      "보충 설명 닫기",
+      "Hide notes"
+    ],
+    [
+      "보충 설명 열기",
+      "Show notes"
+    ],
+    [
+      "보충 모두 닫기",
+      "Hide all notes"
+    ],
+    [
+      "보충 모두 열기",
+      "Show all notes"
+    ],
+    [
+      "지금 열차 위치: ${esc(n.q)}. 위아래 화살표로 역을 옮깁니다",
+      "Train at: ${esc(n.q)}. Use the up and down arrows to move it"
+    ],
+    [
+      "되살리기",
+      "Restore"
+    ],
+    [
+      "바꾼 것 내보내기 ${k}건",
+      "Export ${k} changes"
+    ],
+    [
+      "버린 칸 ${gone.length}개",
+      "${gone.length} discarded"
+    ],
+    [
+      "「${n.q}」 버림",
+      "Discarded \"${n.q}\""
+    ],
+    [
+      "「${n.q}」 되살림",
+      "Restored \"${n.q}\""
+    ],
+    [
+      "휴지통",
+      "Trash"
+    ],
+    [
+      "AI 수정",
+      "AI edit"
+    ],
+    [
+      "<span class=\"fresh-tag\">새 칸</span>",
+      "<span class=\"fresh-tag\">New</span>"
+    ],
+    [
+      "묻는 중",
+      "Asking"
+    ],
+    [
+      "물어보기",
+      "Ask"
+    ],
+    [
+      ">멈추기<",
+      ">Stop<"
+    ],
+    [
+      ">닫기<",
+      ">Close<"
+    ],
+    [
+      "예) 더 짧게 써 줘, 숫자는 그대로 두고 쉬운 말로",
+      "e.g. Make it shorter and keep the numbers"
+    ],
+    [
+      "클로드가 고치는 중",
+      "Claude is editing"
+    ],
+    [
+      "고친 글을 받지 못했습니다. 다르게 말해 보세요",
+      "No edit came back. Try wording it differently"
+    ],
+    [
+      "「${p.q}」로 고침",
+      "Changed to \"${p.q}\""
+    ],
+    [
+      "여기에 어떤 일을 넣을까요? 예) 주문이 오면 사장님께 알림을 보냅니다",
+      "What should go here? e.g. Notify the owner when an order comes in"
+    ],
+    [
+      "클로드 사용을 허락하지 않아 물을 수 없습니다",
+      "Claude access is not allowed here"
+    ],
+    [
+      "사용 한도에 닿았습니다. 잠시 뒤에 다시 물어보세요",
+      "Usage limit reached. Try again later"
+    ],
+    [
+      "답을 읽지 못했습니다. 다시 물어보세요",
+      "Couldn't read the answer. Ask again"
+    ],
+    [
+      "묻지 못했습니다(",
+      "Couldn't ask ("
+    ],
+    [
+      "멈췄습니다",
+      "Stopped"
+    ],
+    [
+      "클로드가 생각하는 중",
+      "Claude is thinking"
+    ],
+    [
+      "답이 길어 잘렸습니다",
+      "The answer was cut off"
+    ],
+    [
+      "클로드가 새 칸을 쓰는 중",
+      "Claude is writing a new card"
+    ],
+    [
+      "새 칸을 받지 못했습니다. 다르게 말해 보세요",
+      "No card came back. Try wording it differently"
+    ],
+    [
+      "「${n.q}」 새 칸 넣음",
+      "Added \"${n.q}\""
+    ],
+    [
+      "열차를 「${tgt.q}」로 옮김",
+      "Moved the train to \"${tgt.q}\""
+    ],
+    [
+      "추가 노선과 보조 노선은 메인 줄을 건너 바로 이을 수 없습니다",
+      "Side and Extra lines can't link across the Main line"
+    ],
+    [
+      "「${low.q}」을 「${up.q}」에 이음",
+      "Linked \"${low.q}\" to \"${up.q}\""
+    ],
+    [
+      "되돌릴 것이 없습니다",
+      "Nothing to undo"
+    ],
+    [
+      "한 단계 되돌림",
+      "Undid one step"
+    ],
+    [
+      "지금: ${n.q}",
+      "Now: ${n.q}"
+    ],
+    [
+      "<button>되돌리기</button>",
+      "<button>Undo</button>"
+    ],
+    [
+      "이 화면에서만 바뀜(저장소 없음)",
+      "Changes stay on this screen (no storage)"
+    ],
+    [
+      "저장소 응답 없음 · 이 화면에서만 바뀜",
+      "Storage not responding · changes stay on this screen"
+    ],
+    [
+      "불러오기 실패(",
+      "Load failed ("
+    ],
+    [
+      "↶ 뒤로",
+      "↶ Back"
+    ],
+    [
+      "한 단계 되돌리기(Ctrl+Z)",
+      "Undo one step (Ctrl+Z)"
+    ],
+    [
+      "바꾼 것을 파일로 받아 궤적접기.py로 정본에 옮깁니다",
+      "Download your changes and fold them into the data with 궤적접기.py"
+    ],
+    [
+      "aria-label=\"궤적 판\"",
+      "aria-label=\"Tracks\""
+    ],
+    [
+      "${k < from ? \"위\" : \"아래\"}로 ${Math.abs(k - from)}칸",
+      "moved ${k < from ? \"up\" : \"down\"} ${Math.abs(k - from)}"
+    ],
+    [
+      "문장마다 존댓말 「~니다」로 끝나는 완결 문장 하나.",
+      "Write every item as one complete sentence in English."
+    ],
+    [
+      "return late > 0 ? `마감 ${late}일 넘겨 끝냄` : \"마감 안에 끝냄\";",
+      "return late > 0 ? `Done ${late} day${late === 1 ? \"\" : \"s\"} after the due date` : \"Done on time\";"
+    ],
+    [
+      "${SAMPLE ? `<button class=\"askbtn\" data-id=\"${n.id}\" aria-expanded=\"${!!(ASK && ASK.id === n.id)}\" title=\"이 칸에 대해 클로드에게 묻기\" aria-label=\"${esc(n.q)} 클로드에게 묻기\">${SPARK}</button>` : \"\"}",
+      "${SAMPLE ? `<button class=\"askbtn\" data-id=\"${n.id}\" aria-expanded=\"${!!(ASK && ASK.id === n.id)}\" title=\"Ask Claude about this card\" aria-label=\"Ask Claude about ${esc(n.q)}\">${SPARK}</button>` : \"\"}"
+    ],
+    [
+      "if (SAMPLE && py > q.y + 10) hits += `<g class=\"ins${SLOT && SLOT.before === n.id ? \" on\" : \"\"}\" tabindex=\"0\" role=\"button\" data-before=\"${n.id}\" data-after=\"${q.n.id}\" aria-label=\"「${esc(q.n.q)}」 아래에 새 칸 넣기\"><path class=\"hit\" d=\"${d}\"/><g class=\"plus\"><circle cx=\"${p.x}\" cy=\"${py}\" r=\"9\" fill=\"var(--panel)\" stroke=\"var(--accent)\" stroke-width=\"2\"/><path d=\"M ${p.x - 4} ${py} H ${p.x + 4} M ${p.x} ${py - 4} V ${py + 4}\" stroke=\"var(--accent)\" stroke-width=\"2\" stroke-linecap=\"round\"/></g></g>`;",
+      "if (SAMPLE && py > q.y + 10) hits += `<g class=\"ins${SLOT && SLOT.before === n.id ? \" on\" : \"\"}\" tabindex=\"0\" role=\"button\" data-before=\"${n.id}\" data-after=\"${q.n.id}\" aria-label=\"Add a card below “${esc(q.n.q)}”\"><path class=\"hit\" d=\"${d}\"/><g class=\"plus\"><circle cx=\"${p.x}\" cy=\"${py}\" r=\"9\" fill=\"var(--panel)\" stroke=\"var(--accent)\" stroke-width=\"2\"/><path d=\"M ${p.x - 4} ${py} H ${p.x + 4} M ${p.x} ${py - 4} V ${py + 4}\" stroke=\"var(--accent)\" stroke-width=\"2\" stroke-linecap=\"round\"/></g></g>`;"
+    ],
+    [
+      "const HEADS = {done:[\"무엇을 했나요?\", \"결과는요?\"], todo:[\"왜 하나요?\", \"무엇을 하나요?\"], next:[\"왜 하나요?\", \"무엇을 하나요?\"], parked:[\"왜 하나요?\", \"무엇을 기다리나요?\"]};",
+      "const HEADS = {done:[\"What was done?\", \"What came of it?\"], todo:[\"Why?\", \"What will be done?\"], next:[\"Why?\", \"What will be done?\"], parked:[\"Why?\", \"Waiting for what?\"]};"
+    ],
+    [
+      "return `<div class=\"ask\"><div class=\"slot-h\">✦ AI edit · 이 칸 글을 어떻게 고칠까요?</div>${box(ASK, \"askq\", \"e.g. Make it shorter and keep the numbers\")}",
+      "return `<div class=\"ask\"><div class=\"slot-h\">✦ AI edit · How should this card change?</div>${box(ASK, \"askq\", \"e.g. Make it shorter and keep the numbers\")}"
+    ],
+    [
+      "${p ? `<div class=\"prop\">${headHtml(p)}${propBody(p)}${p.x.length ? `<div class=\"deep\">${ul(p.x)}</div>` : \"\"}<div class=\"askrow\"><button class=\"main ok\">넣기</button><button class=\"no\">버리기</button></div></div>` : \"\"}</div>`;",
+      "${p ? `<div class=\"prop\">${headHtml(p)}${propBody(p)}${p.x.length ? `<div class=\"deep\">${ul(p.x)}</div>` : \"\"}<div class=\"askrow\"><button class=\"main ok\">Insert</button><button class=\"no\">Discard</button></div></div>` : \"\"}</div>`;"
+    ],
+    [
+      "return `<div class=\"ask\">${box(ASK, \"askq\", \"이 칸에 대해 무엇이 궁금한가요? 예) 이게 실패하면 어떻게 되나요?\")}${ASK.answer ? `<div class=\"answer\">${esc(ASK.answer)}</div>` : \"\"}</div>`;",
+      "return `<div class=\"ask\">${box(ASK, \"askq\", \"What do you want to know about this card? e.g. What happens if this fails?\")}${ASK.answer ? `<div class=\"answer\">${esc(ASK.answer)}</div>` : \"\"}</div>`;"
+    ],
+    [
+      "\"너는 프로젝트 진행 궤적(백로그) 화면의 칸 하나를 고쳐 쓰는 편집자다. 사용자의 요청대로 이 칸 글만 고친다.\",",
+      "\"You edit one card on a project trajectory (backlog) screen. Rewrite only this card, as the user asks.\","
+    ],
+    [
+      "`지금 칸:\\n제목: ${n.q}\\n[sm] 본문: ${n.sm || n.s.flatMap(([, xs]) => xs).join(\" \") || \"(없음)\"}\\n[x] 보충 설명\\n${n.x.map(s => \"- \" + s).join(\"\\n\") || \"- (없음)\"}`,",
+      "`Current card:\\nTitle: ${n.q}\\n[sm] Body: ${n.sm || n.s.flatMap(([, xs]) => xs).join(\" \") || \"(none)\"}\\n[x] Notes\\n${n.x.map(s => \"- \" + s).join(\"\\n\") || \"- (none)\"}`,"
+    ],
+    [
+      "`사용자 요청: ${cur.text.trim()}`,",
+      "`User request: ${cur.text.trim()}`,"
+    ],
+    [
+      "\"규칙: q는 36자 안의 평서문 한 문장이고 물음표를 쓰지 않는다. 하는 일을 동사로, 대상을 이름으로 쓰고 「~합니다」 「~했습니다」로 끝낸다(예: 깃허브에 올립니다). sm은 칸 본문이고 1~3문장, 한 문장 45자 안이다. 핵심은 sm에 담고 가장 중요한 말 하나를 **「…」**로 감싼다. x는 보충 설명 0~3줄, 한 줄 60자 안이고 숫자 근거, 정의, 확인 안 된 사실처럼 진짜 보충되는 말만 넣는다. Write every item as one complete sentence in English. 문장 안에서 가운뎃점(·)으로 늘어놓지 않는다. 숫자, 날짜, 이름은 한 글자도 바꾸지 않는다. 지금 칸에 없는 사실은 지어내지 않는다. 사용자가 고치라고 하지 않은 부분은 그대로 둔다.\",",
+      "\"Rules: q is the card title, one plain statement under 72 characters with no question mark, saying what is done and to what (e.g. Publish it on GitHub.). sm is the card body, 1 to 3 sentences, each under 90 characters. Put the key point in sm and wrap the single most important phrase in **…**. x is 0 to 3 notes, each under 120 characters, only real supporting facts such as numbers, definitions or unchecked facts. Write every item as one complete sentence in English. Do not list words with middle dots. Do not change any number, date or name. Do not invent facts that are not in the card. Leave everything the user did not ask to change.\","
+    ],
+    [
+      "'다음 JSON 하나만 답한다: {\"q\":\"…합니다\",\"sm\":\"…\",\"x\":[]}'",
+      "'Answer with exactly one JSON object: {\"q\":\"…\",\"sm\":\"…\",\"x\":[]}'"
+    ],
+    [
+      "<div class=\"slot-h\">새 칸 · 「${esc(above ? above.q : \"\")}」 아래</div>",
+      "<div class=\"slot-h\">New card · below “${esc(above ? above.q : \"\")}”</div>"
+    ],
+    [
+      "return {cancelled:\"Stopped\", not_granted:\"Claude access is not allowed here\", rate_limited:\"Usage limit reached. Try again later\", invalid_json:\"Couldn't read the answer. Ask again\"}[code] || `Couldn't ask (${code || \"오류\"})`;",
+      "return {cancelled:\"Stopped\", not_granted:\"Claude access is not allowed here\", rate_limited:\"Usage limit reached. Try again later\", invalid_json:\"Couldn't read the answer. Ask again\"}[code] || `Couldn't ask (${code || \"error\"})`;"
+    ],
+    [
+      "function nodeText(n){ return n ? `${n.q} (${LABEL[n.st]}${n.ax ? \", \" + n.ax : \"\"})\\n${n.sm ? n.sm + \"\\n\" : \"\"}${(n.s || []).map(([h, xs]) => h + \" \" + xs.join(\" \")).join(\"\\n\")}` : \"(없음)\"; }",
+      "function nodeText(n){ return n ? `${n.q} (${LABEL[n.st]}${n.ax ? \", \" + n.ax : \"\"})\\n${n.sm ? n.sm + \"\\n\" : \"\"}${(n.s || []).map(([h, xs]) => h + \" \" + xs.join(\" \")).join(\"\\n\")}` : \"(none)\"; }"
+    ],
+    [
+      "\"너는 프로젝트 진행 궤적(백로그) 화면을 보는 사람의 질문에 답하는 도우미다.\",",
+      "\"You answer questions from a person looking at a project trajectory (backlog) screen.\","
+    ],
+    [
+      "goal ? `프로젝트 목표: ${goal.q}` : \"\",",
+      "goal ? `Project goal: ${goal.q}` : \"\","
+    ],
+    [
+      "`질문 받은 칸:\\n${nodeText(n)}${n.x.length ? \"\\n보충: \" + n.x.join(\" \") : \"\"}`,",
+      "`Card asked about:\\n${nodeText(n)}${n.x.length ? \"\\nNotes: \" + n.x.join(\" \") : \"\"}`,"
+    ],
+    [
+      "`질문: ${cur.text.trim()}`,",
+      "`Question: ${cur.text.trim()}`,"
+    ],
+    [
+      "\"규칙: 존댓말로 3~6문장만 쓴다. 칸에 없는 숫자나 사실은 지어내지 않는다. 칸만으로 답할 수 없으면 무엇을 확인해야 하는지 말한다. 마크다운 기호는 쓰지 않는다.\"",
+      "\"Rules: answer in 3 to 6 sentences of plain English. Do not invent numbers or facts that are not in the card. If the card alone cannot answer, say what needs checking. Do not use Markdown.\""
+    ],
+    [
+      "\"너는 프로젝트 진행 궤적(백로그) 화면에 새 칸 하나를 쓰는 편집자다. 아래 위 칸과 아래 칸 사이에 들어갈 칸이다.\",",
+      "\"You write one new card on a project trajectory (backlog) screen. It goes between the card above and the card below.\","
+    ],
+    [
+      "`위 칸:\\n${nodeText(above)}`, `아래 칸:\\n${nodeText(below)}`,",
+      "`Card above:\\n${nodeText(above)}`, `Card below:\\n${nodeText(below)}`,"
+    ],
+    [
+      "`사용자가 넣고 싶은 것: ${cur.text.trim()}`,",
+      "`What the user wants to add: ${cur.text.trim()}`,"
+    ],
+    [
+      "\"st는 done(이미 끝난 일), todo(할 일), next(바로 다음 할 일), parked(무언가를 기다리는 일) 가운데 하나를 고른다.\",",
+      "\"Pick st from done (already finished), todo (to do), next (the very next thing), parked (waiting on something).\","
+    ],
+    [
+      "\"q는 칸 제목이다. 36자 안의 평서문 한 문장이고 물음표를 쓰지 않는다. 하는 일을 동사로, 그 대상을 이름으로 써서 「~합니다」 「~했습니다」로 끝낸다(예: 깃허브에 올립니다). 사용자가 쓰지 않은 낱말을 지어 쓰지 않는다.\",",
+      "\"q is the card title: one plain statement under 72 characters with no question mark, saying what is done and to what (e.g. Publish it on GitHub.). Do not invent words the user did not use.\","
+    ],
+    [
+      "\"sm은 칸 본문이다. 1~3문장으로 done이면 무엇을 했고 결과가 무엇인지, todo와 next면 무엇을 할지, parked면 왜 멈췄는지 쓴다. 가장 중요한 말 하나를 **「…」**로 감싼다.\",",
+      "\"sm is the card body: 1 to 3 sentences. For done, say what was done and the result. For todo and next, say what will be done. For parked, say why it stopped. Wrap the single most important phrase in **…**.\","
+    ],
+    [
+      "\"x는 보충 설명 0~3줄이다. 숫자 근거, 정의, 아직 확인 안 된 사실처럼 진짜 보충되는 말만 넣고 없으면 빈 배열이다.\",",
+      "\"x is 0 to 3 notes: only real supporting facts such as numbers, definitions or unchecked facts. Use an empty array if there are none.\","
+    ],
+    [
+      "\"규칙: Write every item as one complete sentence in English. sm의 한 문장은 45자 안, x는 60자 안. 문장 안에서 가운뎃점(·)으로 늘어놓지 않는다. 위아래 칸에 없는 숫자나 사실은 지어내지 않고, 확실하지 않으면 「확인이 필요합니다」로 쓴다.\",",
+      "\"Rules: Write every item as one complete sentence in English. Each sm sentence under 90 characters, each x under 120. Do not list words with middle dots. Do not invent numbers or facts that are not in the cards above and below. If unsure, write Needs checking.\","
+    ],
+    [
+      "'다음 JSON 하나만 답한다: {\"q\":\"…합니다\",\"st\":\"todo\",\"sm\":\"…\",\"x\":[]}'",
+      "'Answer with exactly one JSON object: {\"q\":\"…\",\"st\":\"todo\",\"sm\":\"…\",\"x\":[]}'"
+    ],
+    [
+      "if (lane !== 0) { n.ax = lane > 0 ? \"보조\" : \"추가\"; n.from = above.id; }",
+      "if (lane !== 0) { n.ax = lane > 0 ? \"Side\" : \"Extra\"; n.from = above.id; }"
+    ],
+    [
+      "if (low.lane !== 0 && !okFrom(seen, low, up.id)) { toast(\"보조와 추가는 메인 카드를 건너 이을 수 없습니다\"); return; }",
+      "if (low.lane !== 0 && !okFrom(seen, low, up.id)) { toast(\"Side and Extra cards cannot link across a Main card\"); return; }"
+    ],
+    [
+      "const ax = l === 0 ? (LANE0[id] === 0 && AX0[id] ? AX0[id] : [\"보조\", \"추가\", \"축1\", \"부가\"].includes(n.ax) ? \"\" : n.ax || \"\") : (l > 0 ? \"보조\" : \"추가\");",
+      "const ax = l === 0 ? (LANE0[id] === 0 && AX0[id] ? AX0[id] : [\"\\ubcf4\\uc870\", \"\\ucd94\\uac00\", \"\\ucd951\", \"\\ubd80\\uac00\", \"Side\", \"Extra\"].includes(n.ax) ? \"\" : n.ax || \"\") : (l > 0 ? \"Side\" : \"Extra\");"
+    ],
+    [
+      "SAVE = SAVE.then(() => DB.doc(DOC).set({...b, base:BUILD.data || \"\", updated:new Date().toISOString()})).then(() => { SYNC = syncText(); }, e => { SYNC = `저장 못 함(${e && e.code || \"오류\"})`; }).then(() => {",
+      "SAVE = SAVE.then(() => DB.doc(DOC).set({...b, base:BUILD.data || \"\", updated:new Date().toISOString()})).then(() => { SYNC = syncText(); }, e => { SYNC = `Save failed (${e && e.code || \"error\"})`; }).then(() => {"
+    ],
+    [
+      "}, e => { clearTimeout(wait); SYNC = `Load failed (${e && e.code || \"오류\"})`; render(); });",
+      "}, e => { clearTimeout(wait); SYNC = `Load failed (${e && e.code || \"error\"})`; render(); });"
+    ],
+    [
+      "${p ? `<div class=\"prop\">${headHtml(p)}${propBody(p)}${p.x.length ? `<div class=\"deep\">${ul(p.x)}</div>` : \"\"}<div class=\"askrow\"><button class=\"main ok\">넣기</button><button class=\"no\">버리기</button></div></div>` : \"\"}",
+      "${p ? `<div class=\"prop\">${headHtml(p)}${propBody(p)}${p.x.length ? `<div class=\"deep\">${ul(p.x)}</div>` : \"\"}<div class=\"askrow\"><button class=\"main ok\">Insert</button><button class=\"no\">Discard</button></div></div>` : \"\"}"
+    ],
+    [
+      "label:\"메인은 아직 남음\"",
+      "label:\"Main not done yet\""
+    ],
+    [
+      "`이 브라우저에 바꾼 것 ${k}건 저장됨`",
+      "`${k} change${k === 1 ? \"\" : \"s\"} saved in this browser`"
+    ],
+    [
+      "`바꾼 것 ${k}건 저장됨`",
+      "`${k} change${k === 1 ? \"\" : \"s\"} saved`"
+    ],
+    [
+      "`안 접힌 옛 편집 ${OLDEDITS}건`",
+      "`${OLDEDITS} old edit${OLDEDITS === 1 ? \"\" : \"s\"} not folded in`"
+    ],
+    [
+      "지금 카드는 버릴 수 없습니다. 열차를 다른 카드로 먼저 옮깁니다",
+      "The Now card can't be trashed. Move the train to another card first"
+    ],
+    [
+      "aria-label=\"${esc(n.q)} 카드로 가기\"",
+      "aria-label=\"Go to card ${esc(n.q)}\""
+    ],
+    [
+      "aria-label=\"앞 역 ${a}개 보기\"",
+      "aria-label=\"Show ${a} earlier stations\""
+    ],
+    [
+      "aria-label=\"뒤 역 ${after}개 보기\"",
+      "aria-label=\"Show ${after} later stations\""
+    ],
+    [
+      "<title>끝내지 않은 ${l > 0 ? \"보조\" : \"추가\"} 카드가 남았습니다</title>",
+      "<title>${l > 0 ? \"Side\" : \"Extra\"} cards still open here</title>"
+    ],
+    [
+      "aria-label=\"끝내지 않은 ${e.l > 0 ? \"보조\" : \"추가\"} 카드로 가기\"",
+      "aria-label=\"Go to the open ${e.l > 0 ? \"side\" : \"extra\"} card\""
+    ],
+    [
+      "? \"오늘\" : `",
+      "? \"Today\" : `"
+    ],
+    [
+      "\"\"} 완료`;",
+      "\"\"} done`;"
+    ],
+    [
+      "\"처음 세운 계획입니다. 위에서 아래로 차례대로 갑니다.\"",
+      "\"The original plan, taken from top to bottom.\""
+    ],
+    [
+      "\"계획 밖에서 새로 받은 일입니다.\"",
+      "\"New work that came in outside the plan.\""
+    ],
+    [
+      "\"본선을 거드는 정리 일입니다.\"",
+      "\"Support work that helps the main line.\""
+    ],
+    [
+      "`${nm(old.id)} 끝 → ${nm(cur)} 출발`",
+      "`${nm(old.id)} done → ${nm(cur)} next`"
+    ],
+    [
+      "<title>보류: 선로에서 빠진 칸</title>",
+      "<title>Parked: taken off the line</title>"
+    ],
+    [
+      "? \"시작\" : B.last > 1 && r === B.last ? \"마무리\" :",
+      "? \"Start\" : B.last > 1 && r === B.last ? \"Finish\" :"
+    ],
+    [
+      "const c = String(w).slice(-1); if (/\\d/.test(c)) return w + (\"036\".includes(c) ? \"으로\" : \"로\"); const k = c.charCodeAt(0) - 0xAC00, j = k % 28; return w + (k < 0 || k > 11171 || j === 0 || j === 8 ? \"로\" : \"으로\"); }",
+      "return w; }"
+    ],
+    [
+      "= ${mainName(r, B)}에 달린 ${s}번째 ${BL[n.lane]} 카드`",
+      "= card ${s} under ${mainName(r, B)}`"
+    ],
+    [
+      ". 누르면 ${ro(mainName(r, B))} 갑니다\"",
+      ". Click to go to ${mainName(r, B)}\""
+    ],
+    [
+      "` 「${nm}」${\"2459\".includes(nm.slice(-1)) ? \"는\" : \"은\"} ${mainName(r, B)}에 달린 ${q}번째 ${BL[l]} 카드입니다.`",
+      "` \"${nm}\" is card ${q} under ${mainName(r, B)}.`"
+    ],
+    [
+      "<title>역을 다른 역까지 끌면 잇고, 보조나 추가 줄로 끌면 그 줄로 옮깁니다</title>",
+      "<title>Drag a station onto another to link them, or onto the Side or Extra line to move it there</title>"
+    ],
+    [
+      "`「${q}」 moved",
+      "`\"${q}\" moved"
+    ],
+    [
+      "`「${n.q}」 → ${LANE_NAME[l]}`",
+      "`\"${n.q}\" → ${LANE_NAME[l]}`"
+    ]
+  ]
+}

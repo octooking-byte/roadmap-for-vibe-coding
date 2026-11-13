@@ -1,0 +1,16 @@
+{
+  "name": "roadmap-for-vibe-coding-market",
+  "owner": {
+    "name": "octooking-byte"
+  },
+  "metadata": {
+    "description": "Subway-map roadmap for vibe coding with Claude Code."
+  },
+  "plugins": [
+    {
+      "name": "roadmap-for-vibe-coding",
+      "source": "./",
+      "description": "A subway-map roadmap for vibe coding: see where your plan bent while an AI writes the code."
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "version": 9,
+  "description": "Example roadmap for a fictional neighborhood bakery. Not a real shop. Copy this file to start your own. Build: python3 엔진/궤적만들기.py 예시/example-en.json",
+  "output": "example-en.html",
+  "language": "en",
+  "updated": "2026-11-11",
+  "header": {
+    "window_title": "Bakery pre-order page",
+    "title": "Regulars pre-order bread from their phones",
+    "lede": [
+      "A fictional bakery, Wheatfield, wants to take orders from regulars by phone.",
+      "The owner's plan runs in order; extra requests from the owner are kept on their own line.",
+      "A sample for people trying the roadmap tool for the first time."
+    ],
+    "footer": "Example data · not a real shop"
+  },
+  "tracks": [
+    {
+      "key": "bake",
+      "name": "Order page",
+      "nodes": [
+        {"id": "bake1", "lane": 0, "status": "goal", "date": "11/01", "title": "Regulars pre-order bread by phone", "summary": "Regulars **order bread ahead** from their phones. The owner packs orders in advance. It opens from one link, no app.", "notes": ["Keep the monthly cost under $10."]},
+        {"id": "bake2", "lane": 0, "status": "done", "date": "11/02", "title": "Picked the 6 breads to take orders for", "summary": "We take orders for **only the 6 best sellers**. Chosen from 12 using last month's sales.", "notes": ["The 6 made up 72% of a month's sales."]},
+        {"id": "bake3", "lane": 0, "status": "done", "date": "11/04", "title": "Made the first order page draft", "summary": "Built a page to **pick breads and a pickup time**. Three regulars ordered in 40 seconds on average.", "notes": ["Pickup time is chosen in 30-minute slots."]},
+        {"id": "bake4", "lane": 1, "status": "done", "date": "11/05", "label": "Request", "title": "Added birthday cake orders", "summary": "At the owner's request, **cake orders were added**. Cakes must be ordered three days ahead.", "notes": []},
+        {"id": "bake5", "lane": 1, "status": "done", "date": "11/06", "label": "Request", "title": "Cake dates are picked on a calendar", "summary": "Cake dates are now **picked on a calendar**. Mondays, the closing day, cannot be picked.", "notes": []},
+        {"id": "bake6", "lane": -1, "status": "done", "date": "11/07", "label": "Cleanup", "title": "Gathered menu photos in one folder", "summary": "Scattered menu photos are now **in one folder**. One photo per bread, 6 in all.", "notes": []},
+        {"id": "bake7", "lane": -1, "status": "done", "date": "11/08", "label": "Cleanup", "title": "Moved the price list into one sheet", "summary": "The wall price list moved **into one spreadsheet**. The page reads prices only from it.", "notes": ["Found the salt bread price differed by 30 cents."]},
+        {"id": "bake8", "lane": 0, "status": "now", "date": "11/10", "title": "Send order alerts to the owner's phone", "summary": "Order alerts **go to the owner's phone**. 9 of 10 test alerts arrived within a minute. Looking into the one that was late.", "notes": ["Alerts go by messenger, so they cost nothing per order."]},
+        {"id": "bake9", "lane": 0, "status": "next", "title": "Choose a payment service for prepaying", "summary": "**Pick a payment service** for paying ahead. Compare two and take the lower fee.", "notes": []},
+        {"id": "bake10", "lane": 0, "status": "todo", "title": "Ten regulars try it for a week", "summary": "Ten regulars **try it for a week first**. Find the rough spots before opening to everyone.", "notes": []}
+      ]
+    }
+  ]
+}
