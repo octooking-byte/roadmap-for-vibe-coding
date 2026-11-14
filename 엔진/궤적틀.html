@@ -492,7 +492,7 @@ function render(){
  const BX = bandInfo(VIS);
  const keepFocus = af && cards.contains(af) && !caret ? {sel: af.id ? "#" + CSS.escape(af.id) : af.dataset.id && af.classList[0] ? `.${af.classList[0]}[data-id="${CSS.escape(af.dataset.id)}"]` : "", ki: [...cards.querySelectorAll(".card")].indexOf(af.closest(".card"))} : null;
  cards.innerHTML = VIS.map(n => (SLOT && SLOT.before === n.id ? slotHtml() : "") + `
-  <div class="card c-${n.st}${n.st !== "goal" ? " can-drag" : ""}${n.fresh ? " fresh" : ""}${fxAttr(n)}" id="n-${n.id}" data-id="${n.id}" data-lane="${n.lane}"${n.st !== "goal" ? ' tabindex="0" aria-keyshortcuts="Alt+ArrowUp Alt+ArrowDown Delete E"' : ""}>
+  <div class="card c-${n.st}${n.st !== "goal" ? " can-drag" : ""}${n.fresh ? " fresh" : ""}${fxAttr(n)}" id="n-${n.id}" data-id="${n.id}" data-lane="${n.lane}"${n.st !== "goal" ? ` tabindex="0" aria-keyshortcuts="Alt+ArrowUp Alt+ArrowDown Delete${SAMPLE ? " E" : ""}"` : ""}>
    ${bandHtml(n, BX)}${headHtml(n)}
    <ul class="csum">${cardLines(n)}</ul>
    ${n.x.length ? `<button class="lb" data-id="${n.id}" aria-expanded="${OPEN.has(n.id)}" aria-controls="d-${n.id}" aria-label="${OPEN.has(n.id) ? "보충 설명 닫기" : "보충 설명 열기"}">${ARROW}</button>
@@ -506,7 +506,8 @@ function render(){
  cards.querySelectorAll(".cdgo").forEach(b => { b.onpointerdown = e => e.stopPropagation(); b.onclick = e => { e.stopPropagation(); const c = document.getElementById("n-" + b.dataset.go); if (c) { c.scrollIntoView({block:"center", behavior:RM() ? "auto" : "smooth"}); c.focus({preventScroll:true}); } }; });
  bindAsk(cards);
  if (caret) { const t = document.getElementById(caret[2]); if (t && !t.disabled) { t.focus(); t.setSelectionRange(caret[0], caret[1]); } }
- const all = document.getElementById("allbtn"), withX = VIS.filter(n => n.x.length), every = withX.every(n => OPEN.has(n.id));
+ const all = document.getElementById("allbtn"), withX = VIS.filter(n => n.x.length), every = withX.length > 0 && withX.every(n => OPEN.has(n.id));
+ all.style.display = withX.length ? "" : "none";
  all.setAttribute("aria-expanded", every); all.querySelector("span").textContent = every ? "보충 모두 닫기" : "보충 모두 열기";
  renderStamp();
  renderBin();

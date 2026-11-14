@@ -53,7 +53,7 @@ If a Main card is added, removed or reordered, the builder stops. It builds agai
 
 When a task is done, tell Claude "update the roadmap". Claude edits one JSON file and rebuilds the page with one command.
 
-The top strip shows the last finished card and its date. A board that has fallen behind shows it right there.
+The top strip shows the last finished Main card and its date. A board that has fallen behind shows it right there.
 
 ### 4. Cards stay short
 
@@ -73,7 +73,7 @@ Your data is one JSON file in your own repository, so git shows every change. Th
 
 ### Move things by hand
 
-**Drag a card to reorder it.** While you drag, a blue gap shows where it will land. A Trash and an "AI edit" slot appear at the bottom.
+**Drag a card to reorder it.** While you drag, a blue gap shows where it will land and a Trash appears at the bottom. On claude.ai an "AI edit" slot appears next to it.
 
 **Throw a card away.** Drop the card on the Trash. Thrown cards gather in the "N discarded" list above the map, and Restore puts one back.
 
@@ -107,7 +107,7 @@ These three work when the page is published as a claude.ai artifact. Claude's te
 
 - **Where am I now**: the top strip lays the Main stations out left to right, with a red dot on the current one. Tap a station to jump to its card.
 - **Pick up where you left off**: if last time's Now card is finished when you reopen, the train runs to the new station and a notice tells you.
-- **What the lines mean**: tap Main, Side or Extra above the map. A bubble explains the line with a real card from your roadmap.
+- **What the lines mean**: tap Main, Side or Extra above the map. The Side and Extra bubbles explain the line with a real card from your roadmap.
 - **Notes behind a card**: tap the arrow at the top right of a card to open its notes, such as the numbers behind a claim. "Show all notes" opens every card.
 - **Undo**: "↶ Back" under the strip, or Ctrl+Z, up to 50 steps.
 - **Start, Finish and Parked**: the first Main card reads Start and the last reads Finish. Parked cards get hatching and a dashed border, off the line.
@@ -126,7 +126,7 @@ These three work when the page is published as a claude.ai artifact. Claude's te
 
 ## Install
 
-You need Python 3.8 or later (`python3`, or `py -3` on Windows).
+You need Python 3.8 or later (`python3`, or `py -3` on Windows). It has been run on 3.10 and 3.11.
 
 **Claude Code in a terminal**: run the two lines in [Quick start](#quick-start).
 
@@ -149,7 +149,7 @@ In Claude Code, just say it.
 By hand it takes three steps.
 
 1. Copy `예시/example-en.json` into your project folder.
-2. Replace the header and the cards with your own work. The smallest file looks like the one below.
+2. Replace the header and the cards with your own work. Set `output` to the page name you want and delete the `updated` line. The smallest file looks like the one below.
 3. Run `python3 엔진/궤적만들기.py your-folder/example-en.json`.
 
 ```json
@@ -167,7 +167,7 @@ By hand it takes three steps.
 | `id` | Starts with a letter. Never changed once set |
 | `lane` | 0 (Main), 1 (Side), -1 (Extra). A number, no quotes |
 | `status` | goal, done, now, todo, parked, next. One `now` per track at most |
-| `date` | `MM/DD` on done and now cards |
+| `date` | `MM/DD` on done and now cards. A done card without one gets a warning |
 | `due` | Optional `YYYY-MM-DD` |
 | `title` | One sentence, 72 characters or fewer |
 | `summary` | 1 to 3 sentences, 90 characters or fewer each |
@@ -191,7 +191,7 @@ By hand it takes three steps.
 - Linking lines and moving a card to another line work by mouse or touch only for now.
 - "This browser only" means the browser's localStorage. Other computers and other browsers do not see it.
 - Where localStorage is blocked, such as a private window, edits change the page but are not saved. The page says so at the top.
-- The page opens in current Chrome, Edge and Firefox, and in Safari on iPhone.
+- The page has been checked in current Chrome and Edge. Firefox and Safari have not been tested yet.
 
 Editing the data needs only Python 3 and a JSON file. Any AI coding tool that can edit files and run commands can do it. Only Claude Code has been tested.
 
@@ -204,10 +204,10 @@ Yes. Viewing the map, dragging cards, moving the train and undo all work from a 
 Nowhere. The builder and the checker run on your computer and send nothing. The page loads one font (Noto Sans KR) from Google Fonts. Without internet it uses the device font.
 
 **How do I change the Main line?**
-Edit the Main cards in the data, then run the builder with `--메인승인 "why"`. The note is kept in the data under `main_log`.
+Edit the Main cards in the data, then run the builder with `--메인승인 "why"`. The note is kept in the data under `main_log`. The builder finds the change by comparing with the HTML it built last time, so keep that HTML next to the JSON.
 
 **Do edits made on the page survive a rebuild?**
-Yes, if you fold them back first. Give the file from "Export changes" to `python3 엔진/궤적접기.py <data.json> <edits.json>`. In Claude Code, Claude does this when it updates the roadmap.
+Yes, if you fold them back first. Give the file from "Export changes" to `python3 엔진/궤적접기.py <data.json> <edits.json>`. Thrown cards are not removed from the data; the script only reports how many. In Claude Code, Claude does this when it updates the roadmap.
 
 **The builder prints violations and stops.**
 Fix the cards it names and run it again. Most often a title or a summary is too long.

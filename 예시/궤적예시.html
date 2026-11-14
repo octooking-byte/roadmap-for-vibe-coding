@@ -382,7 +382,7 @@ h1,.lede{word-break:keep-all}
 
 
 const UPDATED = "2026-11-14";
-const BUILD = {"engine": "43e1bd0a8a71", "data": "d38ced151764", "prev": "0f87c47eb15f", "갱신": "2026-11-14"};
+const BUILD = {"engine": "ff692da59302", "data": "d38ced151764", "prev": "0f87c47eb15f", "갱신": "2026-11-14"};
 const NODES = [
  {id:"bake1", tk:"bake", lane:0, st:"goal", w:"11/01", ax:"메인", q:"단골이 휴대폰으로 빵을 미리 주문하게 합니다", sm:"단골이 휴대폰으로 **「빵을 미리 주문하게」** 합니다. 사장님은 주문을 받아 미리 싸 둡니다. 앱 설치 없이 주소 하나로 열립니다.", s:[], x:["월 비용은 만 원 안으로 둡니다."]},
  {id:"bake2", tk:"bake", lane:0, st:"done", w:"11/02", ax:"메인", q:"주문받을 빵 6가지를 정했습니다", sm:"많이 팔리는 **「빵 6가지만 주문받기로」** 정했습니다. 지난 한 달 판매 기록으로 12가지 중에서 골랐습니다. 식빵, 바게트, 소금빵, 크루아상, 단팥빵, 스콘입니다.", s:[], x:["6가지가 한 달 매출의 72%를 차지했습니다."]},
@@ -501,7 +501,7 @@ function render(){
  const BX = bandInfo(VIS);
  const keepFocus = af && cards.contains(af) && !caret ? {sel: af.id ? "#" + CSS.escape(af.id) : af.dataset.id && af.classList[0] ? `.${af.classList[0]}[data-id="${CSS.escape(af.dataset.id)}"]` : "", ki: [...cards.querySelectorAll(".card")].indexOf(af.closest(".card"))} : null;
  cards.innerHTML = VIS.map(n => (SLOT && SLOT.before === n.id ? slotHtml() : "") + `
-  <div class="card c-${n.st}${n.st !== "goal" ? " can-drag" : ""}${n.fresh ? " fresh" : ""}${fxAttr(n)}" id="n-${n.id}" data-id="${n.id}" data-lane="${n.lane}"${n.st !== "goal" ? ' tabindex="0" aria-keyshortcuts="Alt+ArrowUp Alt+ArrowDown Delete E"' : ""}>
+  <div class="card c-${n.st}${n.st !== "goal" ? " can-drag" : ""}${n.fresh ? " fresh" : ""}${fxAttr(n)}" id="n-${n.id}" data-id="${n.id}" data-lane="${n.lane}"${n.st !== "goal" ? ` tabindex="0" aria-keyshortcuts="Alt+ArrowUp Alt+ArrowDown Delete${SAMPLE ? " E" : ""}"` : ""}>
    ${bandHtml(n, BX)}${headHtml(n)}
    <ul class="csum">${cardLines(n)}</ul>
    ${n.x.length ? `<button class="lb" data-id="${n.id}" aria-expanded="${OPEN.has(n.id)}" aria-controls="d-${n.id}" aria-label="${OPEN.has(n.id) ? "보충 설명 닫기" : "보충 설명 열기"}">${ARROW}</button>
@@ -515,7 +515,8 @@ function render(){
  cards.querySelectorAll(".cdgo").forEach(b => { b.onpointerdown = e => e.stopPropagation(); b.onclick = e => { e.stopPropagation(); const c = document.getElementById("n-" + b.dataset.go); if (c) { c.scrollIntoView({block:"center", behavior:RM() ? "auto" : "smooth"}); c.focus({preventScroll:true}); } }; });
  bindAsk(cards);
  if (caret) { const t = document.getElementById(caret[2]); if (t && !t.disabled) { t.focus(); t.setSelectionRange(caret[0], caret[1]); } }
- const all = document.getElementById("allbtn"), withX = VIS.filter(n => n.x.length), every = withX.every(n => OPEN.has(n.id));
+ const all = document.getElementById("allbtn"), withX = VIS.filter(n => n.x.length), every = withX.length > 0 && withX.every(n => OPEN.has(n.id));
+ all.style.display = withX.length ? "" : "none";
  all.setAttribute("aria-expanded", every); all.querySelector("span").textContent = every ? "보충 모두 닫기" : "보충 모두 열기";
  renderStamp();
  renderBin();

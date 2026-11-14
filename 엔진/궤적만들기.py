@@ -125,7 +125,7 @@ def 만들기(데이터경로, 시험출력=None, 메인승인=None):
         sys.exit("데이터 점검 위반이 있어 화면을 만들지 않았다. 데이터를 고친다.")
     머리 = data["머리"]
     본출력 = (데이터경로.parent / str(data.get("출력", "궤적백로그.html"))).resolve()
-    if 본출력.suffix != ".html" or not 본출력.is_relative_to(데이터경로.parent):
+    if 본출력.suffix != ".html" or 데이터경로.parent not in 본출력.parents:
         sys.exit(f"출력은 데이터 폴더 안의 .html 파일이어야 한다: {data.get('출력')}")
     출력 = Path(시험출력).resolve() if 시험출력 else 본출력
     출력.parent.mkdir(parents=True, exist_ok=True)
