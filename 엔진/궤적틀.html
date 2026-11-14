@@ -547,6 +547,7 @@ function draw(){
  const lane = parseFloat(css.getPropertyValue("--lane")), railw = parseFloat(css.getPropertyValue("--railw"));
  const mid = railw / 2, x = l => mid + l * lane;
  const H = graph.offsetHeight, W = railw;
+ if (!H) return;
  svg.setAttribute("width", W); svg.setAttribute("height", H); svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
  const pos = {};
  vis().forEach(n => {
@@ -1516,5 +1517,6 @@ const LTIP = {"0":"처음 세운 계획입니다. 위에서 아래로 차례대�
 }
 goNow();
 window.addEventListener("resize", () => { clearTimeout(window.__t); window.__t = setTimeout(draw, 120); });
+if (window.ResizeObserver) new ResizeObserver(() => { clearTimeout(window.__t); window.__t = setTimeout(draw, 120); }).observe(document.getElementById("graph"));
 if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { draw(); goNow(); });
 </script>

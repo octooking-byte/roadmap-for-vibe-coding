@@ -382,7 +382,7 @@ h1,.lede{word-break:keep-all}
 
 
 const UPDATED = "2026-11-11";
-const BUILD = {"engine": "1819c1d92a8b", "data": "9a527d954354", "prev": "", "갱신": "2026-11-11"};
+const BUILD = {"engine": "3f57e7759405", "data": "9a527d954354", "prev": "", "갱신": "2026-11-11"};
 const NODES = [
  {id:"bake1", tk:"bake", lane:0, st:"goal", w:"11/01", ax:"메인", q:"Regulars pre-order bread by phone", sm:"Regulars **order bread ahead** from their phones. The owner packs orders in advance. It opens from one link, no app.", s:[], x:["Keep the monthly cost under $10."]},
  {id:"bake2", tk:"bake", lane:0, st:"done", w:"11/02", ax:"메인", q:"Picked the 6 breads to take orders for", sm:"We take orders for **only the 6 best sellers**. Chosen from 12 using last month's sales.", s:[], x:["The 6 made up 72% of a month's sales."]},
@@ -556,6 +556,7 @@ function draw(){
  const lane = parseFloat(css.getPropertyValue("--lane")), railw = parseFloat(css.getPropertyValue("--railw"));
  const mid = railw / 2, x = l => mid + l * lane;
  const H = graph.offsetHeight, W = railw;
+ if (!H) return;
  svg.setAttribute("width", W); svg.setAttribute("height", H); svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
  const pos = {};
  vis().forEach(n => {
@@ -1525,5 +1526,6 @@ const LTIP = {"0":"The original plan, taken from top to bottom.", "1":"New work 
 }
 goNow();
 window.addEventListener("resize", () => { clearTimeout(window.__t); window.__t = setTimeout(draw, 120); });
+if (window.ResizeObserver) new ResizeObserver(() => { clearTimeout(window.__t); window.__t = setTimeout(draw, 120); }).observe(document.getElementById("graph"));
 if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { draw(); goNow(); });
 </script>

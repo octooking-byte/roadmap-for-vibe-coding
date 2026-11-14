@@ -382,7 +382,7 @@ h1,.lede{word-break:keep-all}
 
 
 const UPDATED = "2026-11-14";
-const BUILD = {"engine": "1819c1d92a8b", "data": "d38ced151764", "prev": "0f87c47eb15f", "갱신": "2026-11-14"};
+const BUILD = {"engine": "3f57e7759405", "data": "d38ced151764", "prev": "0f87c47eb15f", "갱신": "2026-11-14"};
 const NODES = [
  {id:"bake1", tk:"bake", lane:0, st:"goal", w:"11/01", ax:"메인", q:"단골이 휴대폰으로 빵을 미리 주문하게 합니다", sm:"단골이 휴대폰으로 **「빵을 미리 주문하게」** 합니다. 사장님은 주문을 받아 미리 싸 둡니다. 앱 설치 없이 주소 하나로 열립니다.", s:[], x:["월 비용은 만 원 안으로 둡니다."]},
  {id:"bake2", tk:"bake", lane:0, st:"done", w:"11/02", ax:"메인", q:"주문받을 빵 6가지를 정했습니다", sm:"많이 팔리는 **「빵 6가지만 주문받기로」** 정했습니다. 지난 한 달 판매 기록으로 12가지 중에서 골랐습니다. 식빵, 바게트, 소금빵, 크루아상, 단팥빵, 스콘입니다.", s:[], x:["6가지가 한 달 매출의 72%를 차지했습니다."]},
@@ -556,6 +556,7 @@ function draw(){
  const lane = parseFloat(css.getPropertyValue("--lane")), railw = parseFloat(css.getPropertyValue("--railw"));
  const mid = railw / 2, x = l => mid + l * lane;
  const H = graph.offsetHeight, W = railw;
+ if (!H) return;
  svg.setAttribute("width", W); svg.setAttribute("height", H); svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
  const pos = {};
  vis().forEach(n => {
@@ -1525,5 +1526,6 @@ const LTIP = {"0":"처음 세운 계획입니다. 위에서 아래로 차례대�
 }
 goNow();
 window.addEventListener("resize", () => { clearTimeout(window.__t); window.__t = setTimeout(draw, 120); });
+if (window.ResizeObserver) new ResizeObserver(() => { clearTimeout(window.__t); window.__t = setTimeout(draw, 120); }).observe(document.getElementById("graph"));
 if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { draw(); goNow(); });
 </script>
