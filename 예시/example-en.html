@@ -371,6 +371,7 @@ h1,.lede{word-break:keep-all}
   <button class="backbtn" id="backbtn" title="Undo one step (Ctrl+Z)" disabled>↶ Back</button>
   <button class="binbtn" id="binbtn" aria-expanded="false" aria-controls="bin" hidden></button>
   <button class="binbtn" id="exportbtn" title="Download your changes and fold them into the data with 궤적접기.py" hidden></button>
+  <button class="binbtn" id="oldbtn" title="Removes old edits from this browser once you have folded them into the data" hidden></button>
  </div>
  <div class="bin" id="bin" hidden><ul id="binlist"></ul></div>
  <div class="graph" id="graph"><svg class="rails" id="rails" aria-hidden="true"></svg><div class="cards" id="cards"></div></div>
@@ -382,7 +383,7 @@ h1,.lede{word-break:keep-all}
 
 
 const UPDATED = "2026-11-11";
-const BUILD = {"engine": "ff692da59302", "data": "9a527d954354", "prev": "", "갱신": "2026-11-11"};
+const BUILD = {"engine": "c86693eb318c", "data": "9a527d954354", "prev": "", "갱신": "2026-11-11"};
 const NODES = [
  {id:"bake1", tk:"bake", lane:0, st:"goal", w:"11/01", ax:"Main", q:"Regulars pre-order bread by phone", sm:"Regulars **order bread ahead** from their phones. The owner packs orders in advance. It opens from one link, no app.", s:[], x:["Keep the monthly cost under $10."]},
  {id:"bake2", tk:"bake", lane:0, st:"done", w:"11/02", ax:"Main", q:"Picked the 6 breads to take orders for", sm:"We take orders for **only the 6 best sellers**. Chosen from 12 using last month's sales.", s:[], x:["The 6 made up 72% of a month's sales."]},
@@ -771,6 +772,12 @@ function renderBin(){
  });
  const xb = document.getElementById("exportbtn"), k = editCount(body()) + (DB && DB.local ? OLDEDITS : 0);
  xb.hidden = !(k && (!DB || DB.local)); xb.textContent = `Export ${k} changes`; xb.onclick = exportEdits;
+ const ob = document.getElementById("oldbtn");
+ ob.hidden = !(DB && DB.local && OLDEDITS); ob.textContent = `Clear ${OLDEDITS} old edit${OLDEDITS === 1 ? "" : "s"}`; ob.onclick = clearOldEdits;
+}
+function clearOldEdits(){
+ const n = OLDEDITS, back = DB.clearOlds(), set = k => { OLDEDITS = k; SYNC = syncText(); render(); };
+ set(0); toast(`Cleared ${n} old edit${n === 1 ? "" : "s"}`, () => { back(); set(n); });
 }
 document.getElementById("binbtn").onclick = () => { BIN_OPEN = !BIN_OPEN; renderBin(); };
 function discard(id){
@@ -1406,6 +1413,8 @@ function localDB(){
  return {local:true,
 
   olds:() => Object.keys(localStorage).filter(k => k.startsWith(pre + DOCNAME("")) && k !== key(DOC)).map(k => ({name:k.slice(pre.length), data:read(k)})).filter(o => editCount(o.data)),
+
+  clearOlds:() => { const was = Object.keys(localStorage).filter(k => k.startsWith(pre + DOCNAME("")) && k !== key(DOC)).map(k => [k, localStorage.getItem(k)]); was.forEach(([k]) => localStorage.removeItem(k)); return () => was.forEach(([k, v]) => localStorage.setItem(k, v)); },
   doc:n => ({
    set:async v => localStorage.setItem(key(n), JSON.stringify(v)),
    onSnapshot:cb => {

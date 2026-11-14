@@ -390,6 +390,18 @@
       "`${k} change${k === 1 ? \"\" : \"s\"} saved`"
     ],
     [
+      "정본에 옮긴 옛 편집을 이 브라우저에서 지웁니다",
+      "Removes old edits from this browser once you have folded them into the data"
+    ],
+    [
+      "`옛 편집 ${OLDEDITS}건 지우기`",
+      "`Clear ${OLDEDITS} old edit${OLDEDITS === 1 ? \"\" : \"s\"}`"
+    ],
+    [
+      "`옛 편집 ${n}건 지움`",
+      "`Cleared ${n} old edit${n === 1 ? \"\" : \"s\"}`"
+    ],
+    [
       "`안 접힌 옛 편집 ${OLDEDITS}건`",
       "`${OLDEDITS} old edit${OLDEDITS === 1 ? \"\" : \"s\"} not folded in`"
     ],

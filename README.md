@@ -207,7 +207,7 @@ Nowhere. The builder and the checker run on your computer and send nothing. The 
 Edit the Main cards in the data, then run the builder with `--메인승인 "why"`. The note is kept in the data under `main_log`. The builder finds the change by comparing with the HTML it built last time, so keep that HTML next to the JSON.
 
 **Do edits made on the page survive a rebuild?**
-Yes, if you fold them back first. Give the file from "Export changes" to `python3 엔진/궤적접기.py <data.json> <edits.json>`. Thrown cards are not removed from the data; the script only reports how many. In Claude Code, Claude does this when it updates the roadmap.
+Yes, if you fold them back first. Give the file from "Export changes" to `python3 엔진/궤적접기.py <data.json> <edits.json>`. Thrown cards are not removed from the data; the script only reports how many. After folding, the "old edits not folded in" notice stays on the page until you press "Clear N old edits". In Claude Code, Claude does this when it updates the roadmap.
 
 **The builder prints violations and stops.**
 Fix the cards it names and run it again. Most often a title or a summary is too long.

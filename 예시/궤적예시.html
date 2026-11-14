@@ -371,6 +371,7 @@ h1,.lede{word-break:keep-all}
   <button class="backbtn" id="backbtn" title="한 단계 되돌리기(Ctrl+Z)" disabled>↶ 뒤로</button>
   <button class="binbtn" id="binbtn" aria-expanded="false" aria-controls="bin" hidden></button>
   <button class="binbtn" id="exportbtn" title="바꾼 것을 파일로 받아 궤적접기.py로 정본에 옮깁니다" hidden></button>
+  <button class="binbtn" id="oldbtn" title="정본에 옮긴 옛 편집을 이 브라우저에서 지웁니다" hidden></button>
  </div>
  <div class="bin" id="bin" hidden><ul id="binlist"></ul></div>
  <div class="graph" id="graph"><svg class="rails" id="rails" aria-hidden="true"></svg><div class="cards" id="cards"></div></div>
@@ -382,7 +383,7 @@ h1,.lede{word-break:keep-all}
 
 
 const UPDATED = "2026-11-14";
-const BUILD = {"engine": "ff692da59302", "data": "d38ced151764", "prev": "0f87c47eb15f", "갱신": "2026-11-14"};
+const BUILD = {"engine": "c86693eb318c", "data": "d38ced151764", "prev": "0f87c47eb15f", "갱신": "2026-11-14"};
 const NODES = [
  {id:"bake1", tk:"bake", lane:0, st:"goal", w:"11/01", ax:"메인", q:"단골이 휴대폰으로 빵을 미리 주문하게 합니다", sm:"단골이 휴대폰으로 **「빵을 미리 주문하게」** 합니다. 사장님은 주문을 받아 미리 싸 둡니다. 앱 설치 없이 주소 하나로 열립니다.", s:[], x:["월 비용은 만 원 안으로 둡니다."]},
  {id:"bake2", tk:"bake", lane:0, st:"done", w:"11/02", ax:"메인", q:"주문받을 빵 6가지를 정했습니다", sm:"많이 팔리는 **「빵 6가지만 주문받기로」** 정했습니다. 지난 한 달 판매 기록으로 12가지 중에서 골랐습니다. 식빵, 바게트, 소금빵, 크루아상, 단팥빵, 스콘입니다.", s:[], x:["6가지가 한 달 매출의 72%를 차지했습니다."]},
@@ -771,6 +772,12 @@ function renderBin(){
  });
  const xb = document.getElementById("exportbtn"), k = editCount(body()) + (DB && DB.local ? OLDEDITS : 0);
  xb.hidden = !(k && (!DB || DB.local)); xb.textContent = `바꾼 것 내보내기 ${k}건`; xb.onclick = exportEdits;
+ const ob = document.getElementById("oldbtn");
+ ob.hidden = !(DB && DB.local && OLDEDITS); ob.textContent = `옛 편집 ${OLDEDITS}건 지우기`; ob.onclick = clearOldEdits;
+}
+function clearOldEdits(){
+ const n = OLDEDITS, back = DB.clearOlds(), set = k => { OLDEDITS = k; SYNC = syncText(); render(); };
+ set(0); toast(`옛 편집 ${n}건 지움`, () => { back(); set(n); });
 }
 document.getElementById("binbtn").onclick = () => { BIN_OPEN = !BIN_OPEN; renderBin(); };
 function discard(id){
@@ -1406,6 +1413,8 @@ function localDB(){
  return {local:true,
 
   olds:() => Object.keys(localStorage).filter(k => k.startsWith(pre + DOCNAME("")) && k !== key(DOC)).map(k => ({name:k.slice(pre.length), data:read(k)})).filter(o => editCount(o.data)),
+
+  clearOlds:() => { const was = Object.keys(localStorage).filter(k => k.startsWith(pre + DOCNAME("")) && k !== key(DOC)).map(k => [k, localStorage.getItem(k)]); was.forEach(([k]) => localStorage.removeItem(k)); return () => was.forEach(([k, v]) => localStorage.setItem(k, v)); },
   doc:n => ({
    set:async v => localStorage.setItem(key(n), JSON.stringify(v)),
    onSnapshot:cb => {
