@@ -1,7 +1,7 @@
 {
   "name": "roadmap-for-vibe-coding",
   "version": "0.1.0",
-  "description": "A subway-map roadmap for vibe coding: see where your plan bent while an AI writes the code. One JSON file, one HTML page.",
+  "description": "A subway-map roadmap for vibe coding: your plan on the Main line, later requests on their own lines, kept up to date by Claude. One JSON file, one HTML page.",
   "author": { "name": "octooking-byte" },
   "homepage": "https://github.com/octooking-byte/roadmap-for-vibe-coding",
   "repository": "https://github.com/octooking-byte/roadmap-for-vibe-coding",

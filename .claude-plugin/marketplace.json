@@ -10,7 +10,7 @@
     {
       "name": "roadmap-for-vibe-coding",
       "source": "./",
-      "description": "A subway-map roadmap for vibe coding: see where your plan bent while an AI writes the code."
+      "description": "A subway-map roadmap for vibe coding: your plan on the Main line, later requests on their own lines, kept up to date by Claude."
     }
   ]
 }
