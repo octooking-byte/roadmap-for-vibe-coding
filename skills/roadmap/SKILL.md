@@ -18,6 +18,8 @@ The black strip on top shows the current card. On the page the first main card i
 
 ## Steps
 
+`${CLAUDE_PLUGIN_ROOT}` is the plugin's folder when this is installed as a plugin. If you only cloned the repository, use the path of the cloned folder instead.
+
 1. Look for an existing roadmap (`roadmap.json` / `궤적데이터.json`) and its built `.html` in the project.
 2. If there is none, copy `${CLAUDE_PLUGIN_ROOT}/예시/궤적데이터.json` into the project (for example `docs/roadmap/roadmap.json`). Replace the bakery example with the user's plan: set the header and `출력` (below), then the cards. Ask the user for the main plan; do not invent main cards.
 3. Edit cards in the JSON (rules below).
@@ -26,7 +28,7 @@ The black strip on top shows the current card. On the page the first main card i
    On Windows use `py -3` and set `PYTHONIOENCODING=utf-8` so Korean messages print.
    The builder checks the data first and writes nothing if a rule is broken; fix the lines it prints and run it again.
    Its last line, `저장 문서: board/edits-…`, is the name under which a claude.ai artifact saves edits made on the page. You only need it when folding edits back.
-5. Show the page. If you have a claude.ai artifact publishing tool, publish the built HTML as an artifact with the capabilities `db` (saves edits made on the page) and `sample` (the ✦ ask button and the AI rewrite slot). Republish to the **same URL** every time and write that URL next to the data file. Without such a tool, tell the user to open the HTML file in a browser; drag, undo and saving in that browser still work.
+5. Show the page. If you have a claude.ai artifact publishing tool, publish the built HTML as an artifact with the capabilities `db` (saves edits made on the page) and `sample` (the ✦ ask button and the AI rewrite slot). Republish to the **same URL** every time and write that URL in `roadmap-url.txt` next to the data file. Without such a tool, tell the user to open the HTML file in a browser; drag, undo and saving in that browser still work.
 6. Tell the user what changed, card by card, using the card names shown on the page.
 
 ## Top-level fields
@@ -38,7 +40,7 @@ The black strip on top shows the current card. On the page the first main card i
 | `머리` / `header` | `창제목` window title · `제목` title, one sentence saying what the project wants to achieve · `부제목` lede, 2–4 lines, one sentence per line (each line becomes a station on the page) · `바닥` footer |
 | `트랙` / `tracks` | one or more tracks, each with `키` / `key` (letters), `이름` / `name`, `노드` / `nodes` (the cards) |
 | `언어` / `language` | optional `"en"` builds an English page; the checker then only checks lengths |
-| `설명` / `description` · `갱신` / `updated` | a free note that is not shown, and the start date the first build reads. When you copy the example, rewrite `설명` for the project and delete `갱신`; the first build then uses today, and later builds keep the date inside the page |
+| `설명` / `description` · `갱신` / `updated` | a free note that is not shown, and the "last updated" date the page shows. Only the first build reads `갱신`; after that the builder sets it to the day card text last changed. When you copy the example, rewrite `설명` for the project and delete `갱신`, so the first build uses today |
 
 Use Korean keys throughout or English keys throughout, not a mix. Card statuses may be written either way in both.
 
@@ -49,7 +51,7 @@ Use Korean keys throughout or English keys throughout, not a mix. Card statuses 
 | `id` | starts with a letter, unique, never changed or reused |
 | `축` / `lane` | `0`, `1` or `-1` |
 | `상태` / `status` | see the status table below. At most one 지금 / `now` per track |
-| `날짜` / `date` | `MM/DD`: on a 지금 card the day it started, on a 완료 card the day it finished. Other cards need none |
+| `날짜` / `date` | `MM/DD`: on a 지금 card the day it started, on a 완료 card the day it finished, on the 목표 card (optional) the day the plan started. Other cards need none. If you do not know a finish date, leave it out instead of guessing; the checker only warns |
 | `갈래` / `branch` | side and extra cards only: the `id` of the card they branch from. Without it, a card hangs from the nearest main card above it |
 | `마감` / `due` | optional `YYYY-MM-DD` |
 | `질문` / `title` | one short sentence, 36 characters or fewer (72 on an English page) |
@@ -68,7 +70,8 @@ Use Korean keys throughout or English keys throughout, not a mix. Card statuses 
 
 - Start a new roadmap with a 목표 card built from the user's goal, then the user's main steps.
 - Never delete cards; a roadmap is a record. Finish a card by setting 완료 and today's date, then move 지금 to the next card.
-- Keep 완료 and 지금 cards above 대기 and 다음 cards.
+- Keep 완료 and 지금 cards above 대기 and 다음 cards. A 보류 card stays where it was in the plan, even between 완료 cards.
+- When the user's notes disagree (a plan table says one thing, the progress log another), follow the newest progress record and tell the user which one you followed.
 - When the user asks for something outside the plan, add a Side card: status 대기, a short `축이름`, and `갈래` set to the main card it belongs to. Put it below the last 완료 / 지금 card.
 - Blockers and errors go into the card text, not new cards.
 - Bold the one phrase that matters with `**「...」**`.
