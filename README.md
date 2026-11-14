@@ -1,43 +1,57 @@
 # roadmap-for-vibe-coding
 
-**See where your plan bent while an AI writes the code — on one subway map.**
-
 [한국어](README.ko.md)
+
+**A Claude skill that shows what you finished and what you are doing now, on one subway map, while Claude does the work.**
 
 | Light | Dark |
 |---|---|
 | ![A fictional neighborhood bakery roadmap: Start, Main stations, Side and Extra branches, the current card and Finish](예시/화면_전체_밝음_en.png) | ![The same roadmap, dark theme](예시/화면_전체_어두움_en.png) |
 
-No server, no sign-up. One JSON file and one HTML page.
+No server to install. No account to create.
+One JSON file and one HTML page.
 
-## Why use it
+## Why you will like it
 
-**1. Plans bend quietly when you code with an AI.**
-"Can you also do this?" and the AI takes a side road. After a few side roads, nobody remembers the original plan. This tool pins the plan you made to the **Main** line in the middle. New requests branch off to the **Side** line on the right; cleanup that helped the work goes to the **Extra** line on the left. Every place the plan bent stays on the map.
+### 1. Your first plan stays in view
 
-**2. Kanban boards only show "now".**
-A kanban board moves cards across To do, Doing and Done, and finished cards pile up out of sight. A subway map shows the stations you passed and the ones ahead on one page. The red dot on the top strip tells you which station you are at.
+Work keeps picking up "can you also do this?".
+After a few of those, it is hard to tell how far the original plan got.
 
-**3. Progress boards go stale.**
-A board that someone has to update by hand falls behind the real work. Here the AI edits one JSON file and rebuilds the page with one command. Once a Main card is finished, the top strip shows the date it was finished, so a stale board is obvious.
+This roadmap puts your first plan on the **Main** line in the middle.
+Requests added along the way branch to the **Side** line on the right.
+Cleanup that helped the work branches to the **Extra** line on the left.
+However much work piles on, follow the Main line and you see how far the plan got.
 
-**4. The AI cannot grow your plan on its own.**
-If the Main line gains or loses a card, the builder stops. It builds again only with `--메인승인 "reason"` from you, and that note is kept in the data.
+### 2. Finished work does not disappear
 
-**5. Readable in ten seconds.**
-Each card is a one-line title and a summary of one to three sentences. The checker blocks long sentences, so even AI-written cards stay short.
+Finished cards stay on the map as stations you passed.
+You can find what you did yesterday and what you decided last week.
+A **red dot** on the top strip marks the station you are at now.
 
-## How it compares
+### 3. Claude keeps the board up to date
 
-Star counts measured on GitHub on 2026-11-14.
+A board you update by hand falls behind.
+Here Claude edits one JSON file and rebuilds the page with one command.
+The top strip shows the date the last card was finished, so a stale board is easy to spot.
 
-| Tool | Stars | Good at | How this one differs |
-|---|---|---|---|
-| [Vibe Kanban](https://github.com/BloopAI/vibe-kanban) | 28,674 | Running several coding agents side by side on a kanban board | It does not run agents. It keeps the plan and the detours on separate lines, so you can see how the work actually went |
-| [Task Master](https://github.com/eyaltoledano/claude-task-master) | 28,359 | Breaking a requirements doc into tasks for the AI | It does not create tasks. It shows how far the tasks got, on one page |
-| [Backlog.md](https://github.com/MrLesk/Backlog.md) | 7,372 | Managing tasks as Markdown files in the repo | It draws a map instead of a list, so the original plan and the side roads separate at a glance |
+### 4. Claude cannot grow your plan on its own
 
-Those tools help with "what next?". This one shows "where did the plan bend?". They work fine together.
+If a card is added to or removed from the Main line, the builder stops.
+It builds again only when you add `--메인승인 "reason"`.
+That note is kept in the data as a record.
+
+### 5. Every card reads in ten seconds
+
+A card is a one-line title and a summary of one to three sentences.
+The checker blocks long sentences and word lists.
+So even cards Claude writes stay short and clear.
+
+### 6. Edit on the page, ask Claude on the page
+
+Drag cards to reorder them. Drag the train to finish a card.
+Ask Claude about any card, or let it rewrite a card or write a new one.
+Every feature is shown below.
 
 ## Everything it does
 
@@ -71,34 +85,32 @@ Those tools help with "what next?". This one shows "where did the plan bend?". T
 
 ### Everything else
 
-| Feature | How |
-|---|---|
-| Where am I now | The top strip lays the Main stations out left to right with a red dot on the current one. Tap a station to jump to its card; tap the Now line to read its summary |
-| What the lines mean | Tap Main, Side or Extra above the map; a bubble explains it with a real card from your roadmap |
-| Notes behind a card | Tap the arrow on a card, or "Show all notes" |
-| Undo | "↶ Back" under the strip, or Ctrl+Z, up to 50 steps |
-| Restore a thrown card | "N discarded" above the map lists them, each with Restore |
-| Pick up where you left off | If the card that was Now last time is finished when you reopen, the train runs to the new station and a notice tells you |
-| Start, Finish and Parked | The first Main card reads Start, the last reads Finish. Parked cards are hatched with a dashed border, off the line |
-| Keyboard | Alt+↑↓ moves a card, Delete throws it away, E opens AI edit, ↑↓ on the train moves it, ←→ on the strip picks a station |
-| Several tracks | A roadmap can hold more than one track; tabs switch between them |
-| Saving | On claude.ai, edits are saved in the artifact. Opened as a file, they are saved in this browser, and "Export changes" downloads them |
-| Light, dark, phone | Follows your device theme and fits a phone screen |
+- **Where am I now**: the top strip lays the Main stations out left to right, with a red dot on the current one. Tap a station to jump to its card. Tap the Now line to read its summary.
+- **What the lines mean**: tap Main, Side or Extra above the map. A bubble explains the line with a real card from your roadmap.
+- **Notes behind a card**: tap the arrow at the top right of a card, or "Show all notes".
+- **Undo**: "↶ Back" under the strip, or Ctrl+Z, up to 50 steps.
+- **Restore a thrown card**: "N discarded" above the map lists them, each with Restore.
+- **Pick up where you left off**: if last time's Now card is finished when you reopen, the train runs to the new station and a notice tells you.
+- **Start, Finish and Parked**: the first Main card reads Start and the last reads Finish. Parked cards get hatching and a dashed border, off the line.
+- **Keyboard**: Alt+↑↓ moves a card and Delete throws it away. E opens AI edit. On the train, ↑↓ moves it. On the strip, ←→ picks a station.
+- **Several tracks**: a roadmap can hold more than one track. Tabs switch between them.
+- **Saving**: on claude.ai, edits are saved in the artifact. Opened as a file, they are saved in this browser, and "Export changes" downloads them.
+- **Light, dark, phone**: follows your device theme and fits a phone screen.
 
 ## Install
 
 You need Python 3.8 or later (`python3`, or `py -3` on Windows).
 
-| Where you use it | How to install |
-|---|---|
-| Claude Code in a terminal | Run the two lines below |
-| Claude desktop app (Code tab), VS Code extension | Send Claude `install https://github.com/octooking-byte/roadmap-for-vibe-coding`, allow the commands it runs, then start a new session |
-| Without Claude | Clone the repo and open `예시/example-en.html` in a browser |
+**Claude Code in a terminal**: run the two lines below.
 
 ```bash
 claude plugin marketplace add octooking-byte/roadmap-for-vibe-coding
 claude plugin install roadmap-for-vibe-coding@roadmap-for-vibe-coding-market
 ```
+
+**Claude desktop app (Code tab) or VS Code extension**: send Claude `install https://github.com/octooking-byte/roadmap-for-vibe-coding`. Allow the commands it runs, then start a new session.
+
+**Without Claude**: clone the repo and open `예시/example-en.html` in a browser.
 
 **Claude, installing this for someone?** Follow [INSTALL.md](INSTALL.md).
 
@@ -138,11 +150,9 @@ Editing the data needs only Python 3 and a JSON file, so any AI coding tool that
 
 ## Troubleshooting
 
-| Problem | Fix |
-|---|---|
-| The builder prints rule violations and writes nothing | Fix the cards it names, then run it again |
-| "Main line changed" and the builder stops | If you meant it, run again with `--메인승인 "why"` |
-| Edits made on the page are missing after a rebuild | Fold them back first: `python3 엔진/궤적접기.py <data.json> <edits.json>` |
+- **The builder prints rule violations and writes nothing**: fix the cards it names, then run it again.
+- **"Main line changed" and the builder stops**: if you meant it, run again with `--메인승인 "why"`.
+- **Edits made on the page are gone after a rebuild**: fold them back first with `python3 엔진/궤적접기.py <data.json> <edits.json>`.
 
 ## How it works
 
