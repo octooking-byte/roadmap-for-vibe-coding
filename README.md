@@ -171,7 +171,7 @@ By hand it takes three steps.
 | `due` | Optional `YYYY-MM-DD` |
 | `title` | One sentence, 72 characters or fewer |
 | `summary` | 1 to 3 sentences, 90 characters or fewer each |
-| `notes` | 0 to 3 lines, `[]` if none |
+| `notes` | 0 to 3 lines, 120 characters or fewer each. `[]` if none |
 | `label` | A short tag on Side and Extra cards |
 
 - If a rule is broken, the builder writes nothing and prints what to fix, one line each.
@@ -182,7 +182,7 @@ By hand it takes three steps.
 
 | Feature | claude.ai artifact | Opened as a file |
 |---|---|---|
-| The map, drag cards, the train, linking lines | Yes | Yes |
+| The map, dragging cards, moving the train, linking lines | Yes | Yes |
 | Undo, moving cards by keyboard | Yes | Yes |
 | Saving your edits | Artifact database | This browser only |
 | "Export changes" button | No | Yes |

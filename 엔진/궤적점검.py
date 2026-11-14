@@ -321,7 +321,7 @@ def check(path):
     bad = []
     nodes = nodes_of(html)
     if nodes is None:
-        return ["NODES 배열을 찾지 못했다. 고정본 구조(const NODES = [ ... ];)를 바꾸지 않는다."]
+        return ["NODES 배열을 찾지 못했다. 화면의 const NODES = [ ... ]; 줄을 바꾸지 않는다."]
     template = "{{" in html
     ids = [n["id"] for n in nodes]
     if len(set(ids)) != len(ids):

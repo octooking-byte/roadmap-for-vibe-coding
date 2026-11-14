@@ -39,8 +39,8 @@ The black strip on top shows the current card. On the page the first main card i
 | `출력` / `output` | file name of the built page, written next to the JSON (e.g. `roadmap.html`) |
 | `머리` / `header` | `창제목` window title · `제목` title, one sentence saying what the project wants to achieve · `부제목` lede, 2–4 lines, one sentence per line (each line becomes a station on the page) · `바닥` footer |
 | `트랙` / `tracks` | one or more tracks, each with `키` / `key` (letters), `이름` / `name`, `노드` / `nodes` (the cards) |
-| `언어` / `language` | optional `"en"` builds an English page; the checker then only checks lengths |
-| `설명` / `description` · `갱신` / `updated` | a free note that is not shown, and the "last updated" date the page shows. Only the first build reads `갱신`; after that the builder sets it to the day card text last changed. When you copy the example, rewrite `설명` for the project and delete `갱신`, so the first build uses today |
+| `언어` / `language` | optional `"en"` builds an English page; the checker then checks lengths and still blocks a title that ends in a question mark |
+| `설명` / `description` · `갱신` / `updated` | a free note that is not shown, and the "last updated" date the page shows. Only the first build reads `갱신`; after that the page itself carries the day card text last changed, and the JSON value is not rewritten. When you copy the example, rewrite `설명` for the project and delete `갱신`, so the first build uses today |
 
 Use Korean keys throughout or English keys throughout, not a mix. Card statuses may be written either way in both.
 
@@ -56,7 +56,7 @@ Use Korean keys throughout or English keys throughout, not a mix. Card statuses 
 | `마감` / `due` | optional `YYYY-MM-DD` |
 | `질문` / `title` | one short sentence, 36 characters or fewer (72 on an English page) |
 | `요약` / `summary` | 1–3 sentences, 45 characters or fewer each (90 on an English page): what was done and the result, or what is being done now |
-| `보충` / `notes` | 0–3 lines of numbers, definitions or open questions; `[]` if none |
+| `보충` / `notes` | 0–3 lines of numbers, definitions or open questions, 60 characters or fewer each (120 on an English page); `[]` if none |
 | `축이름` / `label` | required on side and extra cards: a short tag such as "Payments" |
 
 | status (Korean / English) | meaning |
@@ -74,7 +74,7 @@ Use Korean keys throughout or English keys throughout, not a mix. Card statuses 
 - When the user's notes disagree (a plan table says one thing, the progress log another), follow the newest progress record and tell the user which one you followed.
 - When the user asks for something outside the plan, add a Side card: status 대기, a short `축이름`, and `갈래` set to the main card it belongs to. Put it below the last 완료 / 지금 card.
 - Blockers and errors go into the card text, not new cards.
-- Bold the one phrase that matters with `**「...」**`.
+- Bold the one phrase that matters: `**「...」**` on a Korean page, `**...**` on an English page.
 - On a Korean page the checker also blocks: a title that does not end in 「~니다」 or 「~요」, a question mark in a title, a past-tense title on a 지금 card, a summary sentence that does not end in 「다」 or 「요」, a middle dot (·) listing words inside a sentence, and a comma right after a connective ending such as 「~고,」.
 
 ## Main lane is the user's
