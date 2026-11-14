@@ -53,11 +53,24 @@ Drag cards to reorder them. Drag the train to finish a card.
 Ask Claude about any card, or let it rewrite a card or write a new one.
 Every feature is shown below.
 
+## How a roadmap grows
+
+![The bakery roadmap starts with only the Main line, then a blue Side line branches to the right and an orange Extra line to the left](예시/움직임_자라기_en.gif)
+
+1. **At first there is only the Main line.** The plan you made becomes stations from top to bottom.
+2. **Work you ask for along the way branches to the Side line.** It is the blue line on the right. In the bakery example, the birthday cake orders the owner asked for later are on the Side line.
+3. **Cleanup that helps the work branches to the Extra line.** It is the orange line on the left. In the bakery example, gathering menu photos and moving the price list are on the Extra line.
+4. A branch closes when its work is done. The Main line runs unbroken to the end.
+
+When Claude takes on new work, it adds cards to the Side or Extra line.
+Only you grow the Main line.
+
 ## Everything it does
 
 ### Move things by hand
 
-**Drag a card to reorder it.** While you drag, a blue gap shows where it will land, and a Trash and an "AI edit" slot appear at the bottom. Drop it on the Trash to throw it away.
+**Drag a card to reorder it.** While you drag, a blue gap shows where it will land, and a Trash and an "AI edit" slot appear at the bottom. 
+**Throw a card away.** Drop the card you are dragging on the Trash at the bottom. Thrown cards gather in the "N discarded" list above the map, and Restore puts one back.
 
 ![Dragging a card down the map; the Trash and AI edit slots appear at the bottom, and the card is dropped on the Trash](예시/움직임_끌기_en.gif)
 
@@ -65,7 +78,7 @@ Every feature is shown below.
 
 ![Dragging the train from Main 4 to Main 5; Main 4 turns Done and Main 5 turns Now](예시/움직임_열차_en.gif)
 
-**Drag a station to another line.** Drag a station dot onto another station to link them, or onto the Side or Extra line to move the card there.
+**Move a card to the Side or Extra line.** Drag the station dot next to a card onto the Side or Extra line, and the card moves to that line. Drop the dot on another station to link the two. Side and Extra never link across the Main line.
 
 ![Dragging a station dot from the Main line toward the Side line](예시/움직임_줄잇기_en.gif)
 
@@ -73,15 +86,15 @@ Every feature is shown below.
 
 **Ask about a card (✦).** Each card has a ✦ button. Claude answers from that card's text. The answer in the picture is an example.
 
-![A question typed under the current card and Claude's answer below it](예시/화면_묻기_en.png)
+![A question typed into the empty box under the current card, then Claude's answer appears](예시/움직임_묻기_en.gif)
 
 **Let Claude rewrite a card.** Drag the card onto the "AI edit" slot, or select it and press E, and say how to change it. Claude shows the new text first; nothing changes until you press Insert.
 
-![The AI edit box under the current card, with Claude's shorter rewrite shown as a preview](예시/화면_AI수정_en.png)
+![A request typed into the AI edit box, then Claude's shorter rewrite appears as a preview](예시/움직임_AI수정_en.gif)
 
 **Add a card from the line.** Hover over the line between two cards and press ＋. Say what to add, and Claude writes a card that fits between them.
 
-![A new card proposed between Main 4 and Main 5, marked New, with Insert and Discard buttons](예시/화면_새칸_en.png)
+![What to add is typed between Main 4 and Main 5, then Claude proposes a new card](예시/움직임_새칸_en.gif)
 
 ### Everything else
 
