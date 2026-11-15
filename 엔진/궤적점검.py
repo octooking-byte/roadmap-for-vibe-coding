@@ -180,10 +180,13 @@ def check_json(path):
         if sum(1 for n in nodes if n["st"] == "now") > 1:
             bad.append(f"{키}: 「지금」 노드가 둘 이상이다.")
         대기칸 = None
+        멈춘메인 = False
         for n in nodes:
+            if 대기칸 and n["lane"] in (0, None):
+                멈춘메인 = False
             if n["st"] in ("todo", "next") and not 대기칸:
-                대기칸 = n["id"]
-            elif n["st"] in ("done", "now") and 대기칸:
+                대기칸, 멈춘메인 = n["id"], n["lane"] in (0, None)
+            elif n["st"] in ("done", "now") and 대기칸 and not 멈춘메인:
                 bad.append(f"{n['id']}: 「{'완료' if n['st'] == 'done' else '지금'}」 칸이 아직 시작하지 않은 칸 {대기칸} 아래에 있다. 끝낸 일과 지금 일은 대기 · 다음 칸보다 위에 둔다.")
         for n in nodes:
             if n["lane"] not in (0, None) and not n["ax"]:
@@ -337,10 +340,12 @@ def check(path):
     for n in nodes:
         nid = n["id"]
         if n.get("tk") != 앞트랙:
-            seen_now, 앞트랙, 대기메인 = False, n.get("tk"), None
+            seen_now, 앞트랙, 대기메인, 멈춘메인 = False, n.get("tk"), None, False
+        if 대기메인 and n["lane"] in (0, None):
+            멈춘메인 = False
         if n["st"] in ("todo", "next") and not 대기메인:
-            대기메인 = nid
-        elif n["st"] in ("done", "now") and 대기메인:
+            대기메인, 멈춘메인 = nid, n["lane"] in (0, None)
+        elif n["st"] in ("done", "now") and 대기메인 and not 멈춘메인:
             bad.append(f"{nid}: 「{'완료' if n['st'] == 'done' else '지금'}」 칸이 아직 시작하지 않은 칸 {대기메인} 아래에 있다. 끝낸 일과 지금 일은 대기 · 다음 칸보다 위에 둔다.")
         if n["st"] not in STATES:
             bad.append(f"{nid}: 상태 {n['st']}는 쓰지 않는 값이다.")
